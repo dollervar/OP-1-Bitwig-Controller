@@ -1,0 +1,70 @@
+
+OP-1 SysEx Specs
+
+* Keine Großbuchstaben
+* Hex ASCII Code für Großbuchstaben:
+H	0x48 = FX Icon Grün
+A	0x41 = ADSR in Blau
+C	0x44 = Drum Sampler Icon
+	0x45 = ADSR in grün
+F	0x46 = "LFO" Schriftzug in grün
+Q = Sequencer Icon
+S = Synth Icon
+T = Tape Icon
+X = FX Icon
+Y = Keys Icon
+Z = EQ Icon
+D = Drum Icon Grün
+E = ADSR Grün
+I = FX & 2 Ringe ineinander
+J = Ringe ineinander
+M = Mixer icon
+
+################################################################################
+/* Init Display
+ *F0 00 20 76 00 03 00 F7
+ *F0 00 20 76 00 04 0D 00 00  00 00 00 00 00 10 00 00 00 00 00 00 00 00 00 00 00 20 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F7
+ *F0 00 20 76 00 04 04 00  00 00 00 00 00 00 00 00 00 00 00 F7
+ */
+
+################################################################################
+/*
+  0xf0 // receive_text sysex
+  0×00
+  0×20 // TE MIDI id
+  0×76 // TE MIDI id
+  0×00
+
+  …
+ // up to 32 chars
+  …
+  0xf7 // end of sysex
+
+  0xf0 // receive_color sysex
+  0×00
+  0×20 // TE MIDI id
+  0×76 // TE MIDI id
+  0×00
+  0×04 // color
+  …
+  // up to 32 colors
+  // …
+  // 0xf7 // end of syses
+*/
+
+To OP-1 Teenage Engineering 8 bytes	F0 00 20 76 00 03 00 F7
+To OP-1 Teenage Engineering 47 bytes	F0 00 20 76 00 04 0D 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00…
+To OP-1 Teenage Engineering 20 bytes	F0 00 20 76 00 04 04 00 00 00 00 00 00 00 00 00 00 00 00 F7
+To OP-1 Universal Non-Real Time 6 bytes	F0 7E 7F 06 01 F7
+From OP-Universal Non-Real Time 17 bytes	F0 7E 00 06 02 00 20 76 00 00 00 00 00 00 00 00 F7
+To OP-1 Universal Non-Real Time 6 bytes	F0 7E 7F 06 01 F7
+From OP-Universal Non-Real Time 17 bytes	F0 7E 00 06 02 00 20 76 00 00 00 00 00 00 00 00 F7
+To OP-1 Teenage Engineering 8 bytes	F0 00 20 76 00 01 02 F7
+To OP-1 Teenage Engineering 8 bytes	F0 00 20 76 00 01 02 F7
+
+
+################################################################################
+BUGS:	Blauer Poti sendet die selbe CC Nummer wie der Rote Poti in der 
+		Userbank04.
+
+
