@@ -50,31 +50,32 @@ var GLOBAL_MAP = {
 	REC_BUTTON: function(event) {
 		event.isShift ? curserTrack.getArm().toggle() : transport.record()
 	},
-	LEFT_ARROW: function() {
-		transport.rewind()
+	LEFT_ARROW: function(event) {
+		event.isShift ? transport.rewind() : application.arrowKeyLeft();
 	},
-	RIGHT_ARROW: function() {
-		transport.fastForward()
+	RIGHT_ARROW: function(event) {
+		event.isShift ?	transport.fastForward() : application.arrowKeyRight();
 	},
 	COM: function(event) {
 		event.isShift ? sendSysex(DEACTIVATE_SEQ) : false
 	},
-	MODE_1_BUTTON: function() {
-		switchMode(OP1_MODES.EDIT)
+	MODE_1_BUTTON: function(event) {
+		event.isShift ? application.toggleDevices() : switchMode(OP1_MODES.EDIT) 
 	},
 	MODE_2_BUTTON: function() {
+		switchMode(OP1_MODES.LAUNCHE)
 	},
 	MODE_3_BUTTON: function() {
 		switchMode(OP1_MODES.ARRANGE)
 	},
-	MODE_4_BUTTON: function() {
-		switchMode(OP1_MODES.MIX)
+	MODE_4_BUTTON: function(event) {
+		event.isShift ? application.toggleMixer() : switchMode(OP1_MODES.MIX)
 	},
-	METRONOME_BUTTON: function() {
+	METRONOME_BUTTON: function(event) {
 		event.isShift ? transport.tabTempo() : transport.toggleClick()
 	},
 	HELP_BUTTON: function() {
-	
+		application.toggleInspector()	
 	},
 	SS1_BUTTON: function() {
 		transport.togglePunchIn()
@@ -96,8 +97,6 @@ var GLOBAL_MAP = {
 	}
 };
 
-
-
 var MIX_MAP = {
 	LEFT_ARROW: function() {
 		curserTrack.selectPrevious()
@@ -115,12 +114,29 @@ var MIX_MAP = {
 		curserTrack.getPan().inc(getEncoderIncrement(event.value), 256)
 	},
 	ENCODER_GREEN: function(event) { 
-		curserTrack.getSend().inc(getEncoderIncrement(event.value), 256)
+		curserTrack.getSend(1).inc(getEncoderIncrement(event.value, 256))
 	},
 
 };
 
 var ARRANGE_MAP = {
+	SCISSOR_BUTTON: function() {
+	},
+	ENCODER_BLUE: function(event) {
+		if (!event.isShift) {
+			transport.incPosition(getEncoderIncrement(event.value),false)
+		} else {
+			if (getEncoderIncrement(event.value) == 1) {
+				application.zoomIn();
+			} else if (getEncoderIncrement(event.value) == -1) {
+				application.zoomOut();
+			}
+		}
+	}
+};
+
+var LAUNCH_MAP = {
+
 };
 
 var EDIT_MAP = {

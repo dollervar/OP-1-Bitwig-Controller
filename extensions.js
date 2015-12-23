@@ -1,7 +1,7 @@
 function switchMode(mode) {
 	if(this.mode != mode) {
-		writeDisplay(mode)	
 		this.mode = mode;
+		writeDisplay(mode)	
 		switch(mode) {
 			case OP1_MODES.ARRANGE:
 				current_map = ARRANGE_MAP
@@ -17,20 +17,17 @@ function switchMode(mode) {
 			case OP1_MODES.EDIT:
 				current_map = EDIT_MAP
 				application.setPanelLayout("EDIT")
+			case OP1_MODES.LAUNCH:
+				current_map = LAUNCH_MAP
+				if (mode == OP1_MODES.ARRANGE) {
+					arranger.isClipLauncherVisible().toggle();
+				} else if (mode == OP1_MODES.MIX) {
+					mixer.isClipLauncherSectionVisible().toggle();
+				};
 		};
 	};
 };
 
-
-function trackSelector(data1) {
-	trackChannel = "";
-	switch(data1) {
-		case 53:
-			printMidi(data1);
-			trackChannel = curserTrack.selectChannel(trackBank.getChannel(0));
-			break;
-		case 55:
-			curserTrack.selectChannel(trackBank.getChannel(1));
-			break;
-	};
+function trackSelect(index) {
+	curserTrack.selectChannel(trackBank.getChannel(index));
 }

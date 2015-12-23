@@ -5,12 +5,15 @@ const NUM_TRACKS = 13;
 
 // Number of modes
 const OP1_MODES ={
-	ARRANGE: "arrange",
-	MIX: "mix",
-	EDIT: "edit",
+	"ARRANGE": "arrange",
+	"MIX": "mix",
+	"EDIT": "edit",
+	"LAUNCHE": "launch"
 };
 
-const NOTES = [53, 55, 57, 59, 60, 62, 63, 64, 66, 68, 70, 71, 73];
+const BITWIG_PANELS = ['editor', 'automation', 'devices', 'mixer', 'inspector', 'browser',];
+
+const NOTES = [53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76];
 
 // OP-1 button -> cc mapping
 const CC = {

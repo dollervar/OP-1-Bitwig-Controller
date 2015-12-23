@@ -76,7 +76,9 @@ function onMidi(status, data1, data2) {
 		});	
 	};
 	if (isNoteOn(status)) {
-			
+		if(this.mode == OP1_MODES.MIX || this.mode == OP1_MODES.ARRANGE) {
+			curserTrack.selectChannel(trackBank.getChannel(NOTES.indexOf(data1)));
+		}
 	};
 }
 
