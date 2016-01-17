@@ -1,5 +1,6 @@
 function writeDisplay(str) {
 	var seq = BEGIN_SEQ + CTRL_CHAR.NP + str.toHex(str.length) + CTRL_CHAR.NULL + END_SEQ
+	println(str)
 	midiOut.sendSysex(seq);
 	midiOut.sendSysex(COLOUR_SEQ + "00 00 00 00 00 00 00 00 00 00 00 00 00" + END_SEQ);
 	printSysex(seq)

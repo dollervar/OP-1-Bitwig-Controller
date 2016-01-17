@@ -3,17 +3,17 @@
 // Number of tracks/channels that can be accesd throught the Note keys
 const NUM_TRACKS = 13;
 
-// Number of modes
+// Define modes
 const OP1_MODES ={
 	"ARRANGE": "arrange",
 	"MIX": "mix",
 	"EDIT": "edit",
-	"LAUNCHE": "launch"
+	"LAUNCH": "launch",
 };
 
 const BITWIG_PANELS = ['editor', 'automation', 'devices', 'mixer', 'inspector', 'browser',];
 
-const NOTES = [53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76];
+const MIDI_NOTES = [53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76];
 
 // OP-1 button -> cc mapping
 const CC = {
@@ -67,6 +67,10 @@ const CC = {
     65: 'ENCODER_GREEN_PRESS',
     66: 'ENCODER_WHITE_PRESS',
     67: 'ENCODER_ORANGE_PRESS',
+};
+
+const METAFN = {
+	
 };
 
 // SysEx Messages

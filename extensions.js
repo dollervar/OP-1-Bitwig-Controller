@@ -6,6 +6,7 @@ function switchMode(mode) {
 			case OP1_MODES.ARRANGE:
 				current_map = ARRANGE_MAP
 				application.setPanelLayout("ARRANGE")
+				arranger.isClipLauncherVisible().set(false);
 				println(transport.getTempo());
 				println(transport.getPosition());
 				println(transport.getTimeSignature().getTicks());
@@ -17,17 +18,22 @@ function switchMode(mode) {
 			case OP1_MODES.EDIT:
 				current_map = EDIT_MAP
 				application.setPanelLayout("EDIT")
+				break;
 			case OP1_MODES.LAUNCH:
+				println('Laucher activated')
 				current_map = LAUNCH_MAP
-				if (mode == OP1_MODES.ARRANGE) {
-					arranger.isClipLauncherVisible().toggle();
-				} else if (mode == OP1_MODES.MIX) {
-					mixer.isClipLauncherSectionVisible().toggle();
-				};
+				application.setPanelLayout("ARRANGE")
+				arranger.isClipLauncherVisible().set(true);
+				break;
 		};
 	};
 };
 
 function trackSelect(index) {
 	curserTrack.selectChannel(trackBank.getChannel(index));
+}
+
+function selPanelFocus() {
+	currentPanel = application.panelLayout().get()
+	
 }
